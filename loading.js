@@ -66,8 +66,10 @@ do_loading().finally(async () => {
         }
     }
     jump()
-    await sleep(5000)
+    await sleep(10)
     done = true
     document.getElementById("loading").classList.add("fade-out")
-    document.getElementById("main").classList.add("fade-in")
+    const main = document.getElementById("main")
+    main.classList.add("fade-in", 'active')
+    main.style.display = "block"
 });

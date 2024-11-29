@@ -1,0 +1,139 @@
+
+:root {
+    --apple-in: translate(10px, -200%) rotate(-40deg);
+    --apple-stay: translate(0px, 0%) rotate(0deg);
+    --apple-size: 100%;
+}
+
+@keyframes apple-fly-out {
+    from {
+        opacity: 1;
+        transform: translate(0%, 0%) rotate(0deg);
+    }
+
+    to {
+        opacity: 0;
+        transform: translate(-50%, 0%) rotate(-20deg);
+    }
+}
+
+@keyframes apple-loadgroup-jump {
+    0% {
+        transform: translate(0%, 0%);
+    }
+    50% {
+        transform: translate(0%, -10px);
+    }
+    100% {
+        transform: translate(0%, 0%);
+    }
+}
+
+@keyframes apple-state-0 {
+    from {
+        opacity: 0;
+        transform: var(--apple-in);
+    }
+
+    to {
+        opacity: 1;
+        transform: var(--apple-stay);
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0px, 0%);
+    }
+    50% {
+        transform: translate(0, 3%);
+    }
+    100% {
+        transform: translate(0, 0%);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div#loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+div#apple img {
+    object-fit: contain;
+    width: var(--apple-size);
+    height: var(--apple-size);
+}
+
+div#apple {
+    display: absolute;
+    transform: var(--apple-in);
+    opacity: 0;
+}
+
+div#apple.state-0 { /* flyin */
+    animation: 1s apple-state-0 ease-out;
+    opacity: 1;
+}
+
+
+div#apple.state-1 { /* flyin */
+    transform: var(--apple-stay);
+}
+
+div#apple img.shake {
+    animation: 250ms shake cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+div#apple.fly-out {
+    animation: 1s apple-fly-out ease-out;
+    opacity: 0;
+}
+
+.fade-in {
+    animation: 1s fade-in ease-out !important;
+    opacity: 1;
+}
+
+.fade-out {
+    animation: 1s fade-out ease-out !important;
+    opacity: 0;
+}
+
+img.apple-loadgroup {
+    padding: 0px 4px;
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+img.apple-loadgroup-anim {
+    animation: 500ms apple-loadgroup-jump ease-out;
+}
