@@ -15,79 +15,15 @@
     <div id="loading">
         <div id="apple">
         </div>
+        <div id="loadgroup" style="position: absolute; display: none;">
+            <img id="apple-loadgroup-0" src="./assets/apple-0.png" alt="apple" class="apple-loadgroup" />
+            <img id="apple-loadgroup-1" src="./assets/apple-0.png" alt="apple" class="apple-loadgroup" />
+            <img id="apple-loadgroup-2" src="./assets/apple-0.png" alt="apple" class="apple-loadgroup" />
+        </div>
     </div>
-    <script lang="javascript" >
-        const SPRING_ITERATIONS = 8;
-
-        class spring {
-            constructor(speed, damping, mass, force) {
-                this.speed = speed
-                this.damping = damping
-                this.mass = mass
-                this.force = force
-                this.velocity = [0, 0]
-                this.position = [0, 0]
-                this._tick = Date.now()
-            }
-
-            shove(vel) {
-                this.velocity[0] += vel[0]
-                this.velocity[1] += vel[1]
-            }
-
-            tick() {
-                var now = Date.now()
-                var delta = now - this._tick;
-                
-            }
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        const apple = document.getElementById("apple")
-        const intro_states = [
-            {
-                path: './assets/apple-0.png',
-                timing: 1,
-            },
-            {
-                path: './assets/apple-1.png',
-                timing: 0.25,
-            },
-            {
-                path: './assets/apple-2.png',
-                timing: 0.25,
-            },
-            {
-                path: './assets/apple-2.png',
-                timing: 0.25,
-            }
-        ]
-        let cur_img;
-        async function do_loading(params) {
-            for (let i = 0; i<intro_states.length; i++) {
-                if (cur_img)
-                    cur_img.remove()
-                const state = intro_states[i]
-                if (state.path) {
-                    const img = document.createElement("img")
-                    img.src = state.path
-                    img.alt = `apple-${i}`
-                    apple.append(img)
-                    apple.classList.add(`state-${i}`)
-                    if (i > 0) {
-                        img.classList.add(`shake`)
-                    }
-                    cur_img = img
-                }
-                await sleep(1000*state.timing);
-                apple.classList.remove("shake")
-            }
-        }
-        do_loading().finally(() => {
-        });
+    <script lang="javascript" src="loading.js">
+    </script>
+    <script lang="javascript" src="main.js">
     </script>
 </body>
 </html>
