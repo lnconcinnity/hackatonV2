@@ -66,7 +66,7 @@ do_loading().finally(async () => {
         }
     }
     jump()
-    await sleep(10)
+    await sleep(5000)
     done = true
     document.getElementById("loading").classList.add("fade-out")
     const main = document.getElementById("main")
